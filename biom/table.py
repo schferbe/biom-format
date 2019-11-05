@@ -3104,7 +3104,7 @@ class Table(object):
             for col_idx in indices[start:end]:
                 yield (obs_id, samp_ids[col_idx])
 
-    def nonzero_counts(self, axis, binary=False):
+    def nonzero_counts(self, axis, binary=True):
         """Get nonzero summaries about an axis
 
         Parameters
@@ -3112,7 +3112,7 @@ class Table(object):
         axis : {'sample', 'observation', 'whole'}
             The axis on which to count nonzero entries
         binary : bool, optional
-            Defaults to ``False``. If ``True``, return number of nonzero
+            Defaults to ``True``. If ``True``, return number of nonzero
             entries. If ``False``, sum the values of the entries.
 
         Returns
@@ -4704,7 +4704,7 @@ html
                 # Covers the case where the first line is the header
                 # and there is no indication of it (no comment character)
                 if not header:
-                    header = line.strip().split(delim)[1:]
+                    header = line.rstrip().split(delim)[1:]
                     data_start = list_index + 1
                 else:
                     data_start = list_index
